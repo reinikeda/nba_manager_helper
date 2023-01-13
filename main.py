@@ -3,7 +3,7 @@ import tkinter.messagebox
 
 window = Tk()
 window.iconbitmap('nba.ico')
-window.title('NBA manager helper')
+window.title('NBA manager helper 2022/2023 season')
 window.geometry('700x520')
 window.resizable(width=False, height=False)
 
@@ -52,9 +52,9 @@ def help():
     help_window = Toplevel(window)
     help_window.iconbitmap('nba.ico')
     help_window.title('Help')
-    help_window.geometry('280x130')
+    help_window.geometry('290x160')
     help_window.resizable(width=False, height=False)
-    l_help = Label(help_window, wraplength='250', justify=LEFT, text='Add (copy paste text) NBA teams schedule of single tour to analyze it. You will get a number of games played per team which will help to make better players substitutes for NBA manager.')
+    l_help = Label(help_window, wraplength='250', justify=LEFT, text='Program is adapted for krepsinis.net NBA manager. It may not work propertly with other NBA managers.\nHow it works? Just add (copy paste text) NBA teams schedule of single tour to analyze it. You will get a number of games played per team which will help to make better players substitutes for NBA manager.')
     b_exit_help = Button(help_window, text='Exit', command=help_window.destroy)
     l_help.pack(padx=10)
     b_exit_help.pack()
