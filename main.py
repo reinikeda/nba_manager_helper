@@ -8,50 +8,29 @@ window.title('NBA manager helper 2022/2023 season')
 window.geometry('700x540')
 window.resizable(width=False, height=False)
 
+team_list = StringVar()
+team_list.set('76ers: \nBucks: \nBulls: \nCavaliers: \nCeltics: \nClippers: \nGolden State Warriors: \nGrizzlies: \nHawks: \nHeat: \nHornets: \nJazz: \nKings: \nKnicks: \nLakers: \nMagic: \nMavericks: \nNets: \nNuggets: \nPacers: \nPelicans: \nPistons: \nRaptors: \nRockets: \nSpurs: \nSuns: \nThunder: \nTimberwolves: \nTrail Blazers: \nWizards: ')
+
+team_list_2 = StringVar()
+team_list_2.set('76ers: \nBucks: \nBulls: \nCavaliers: \nCeltics: \nClippers: \nGolden State Warriors: \nGrizzlies: \nHawks: \nHeat: \nHornets: \nJazz: \nKings: \nKnicks: \nLakers: \nMagic: \nMavericks: \nNets: \nNuggets: \nPacers: \nPelicans: \nPistons: \nRaptors: \nRockets: \nSpurs: \nSuns: \nThunder: \nTimberwolves: \nTrail Blazers: \nWizards: ')
+
+def clear():
+    t_text.delete(1.0, END)
+    l_result['textvariable'] = team_list_2
 
 def analize():
     if len(t_text.get(1.0, END)) == 1:
         tkinter.messagebox.showinfo(title='Error', message='No text was added')
     else:
-        result = t_text.get(1.0, END)
-        phil = result.count('76ers')
-        bucks = result.count('Bucks')
-        bulls = result.count('Bulls')
-        cavaliers = result.count('Cavaliers')
-        celtics = result.count('Celtics')
-        clippers = result.count('Clippers')
-        warriors = result.count('Golden State Warriors')
-        grizzlies = result.count('Grizzlies')
-        hawks = result.count('Hawks')
-        heat = result.count('Heat')
-        hornets = result.count('Hornets')
-        jazz = result.count('Jazz')
-        kings = result.count('Kings')
-        knicks = result.count('Knicks')
-        lakers = result.count('Lakers')
-        magic = result.count('Magic')
-        mavericks = result.count('Mavericks')
-        nets = result.count('Nets')
-        nuggets = result.count('Nuggets')
-        pacers = result.count('Pacers')
-        pelicans = result.count('Pelicans')
-        pistons = result.count('Pistons')
-        raptors = result.count('Raptors')
-        rockets = result.count('Rockets')
-        spurs = result.count('Spurs')
-        suns = result.count('Suns')
-        thunder = result.count('Thunder')
-        timberwolves = result.count('Timberwolves')
-        blazers = result.count('Trail Blazers')
-        wizards = result.count('Wizards')
-        l_result.config(text=f'76ers: {phil}\nBucks: {bucks}\nBulls: {bulls}\nCavaliers: {cavaliers}\nCeltics: {celtics}\nClippers: {clippers}\nGolden State Warriors: {warriors}\nGrizzlies: {grizzlies}\nHawks: {hawks}\nHeat: {heat}\nHornets: {hornets}\nJazz: {jazz}\nKings: {kings}\nKnicks: {knicks}\nLakers: {lakers}\nMagic: {magic}\nMavericks: {mavericks}\nNets: {nets}\nNuggets: {nuggets}\nPacers: {pacers}\nPelicans: {pelicans}\nPistons: {pistons}\nRaptors: {raptors}\nRockets: {rockets}\nSpurs: {spurs}\nSuns: {suns}\nThunder: {thunder}\nTimberwolves: {timberwolves}\nTrail Blazers: {blazers}\nWizards: {wizards}')
+        full_list = ['76ers', 'Bucks', 'Bulls', 'Cavaliers', 'Celtics', 'Clippers', 'Golden State Warriors', 'Grizzlies', 'Hawks', 'Heat', 'Hornets', 'Jazz', 'Kings', 'Knicks', 'Lakers', 'Magic', 'Mavericks', 'Nets', 'Nuggets', 'Pacers', 'Pelicans', 'Pistons', 'Raptors', 'Rockets', 'Spurs', 'Suns', 'Thunder', 'Timberwolves', 'Trail Blazers', 'Wizards']
+        team_count = {}
+        for team in full_list:
+            result = (t_text.get(1.0, END)).count(team)
+            team_count[team] = result
+            team_list.set('\n'.join(f'{team}: {count}' for team, count in team_count.items()))
 
 def link():
     webbrowser.open_new_tab('https://www.krepsinis.net/menedzeris')
-
-def clear():
-    t_text.delete(1.0, END)
-    l_result.config(text='76ers: \nBucks: \nBulls: \nCavaliers: \nCeltics: \nClippers: \nGolden State Warriors: \nGrizzlies: \nHawks: \nHeat: \nHornets: \nJazz: \nKings: \nKnicks: \nLakers: \nMagic: \nMavericks: \nNets: \nNuggets: \nPacers: \nPelicans: \nPistons: \nRaptors: \nRockets: \nSpurs: \nSuns: \nThunder: \nTimberwolves: \nTrail Blazers: \nWizards: ')
 
 def help():
     help_window = Toplevel(window)
@@ -79,7 +58,7 @@ b_exit = Button(f_buttons, text='Exit', command=window.destroy)
 
 f_teams = Frame(window)
 l_info = Label(f_teams, text='Games played on tour', font=14)
-l_result = Label(f_teams, width=20, justify=LEFT, text='76ers: \nBucks: \nBulls: \nCavaliers: \nCeltics: \nClippers: \nGolden State Warriors: \nGrizzlies: \nHawks: \nHeat: \nHornets: \nJazz: \nKings: \nKnicks: \nLakers: \nMagic: \nMavericks: \nNets: \nNuggets: \nPacers: \nPelicans: \nPistons: \nRaptors: \nRockets: \nSpurs: \nSuns: \nThunder: \nTimberwolves: \nTrail Blazers: \nWizards: ')
+l_result = Label(f_teams, width=20, justify=LEFT, textvariable=team_list)
 
 f_main.grid(row=0, column=1, sticky=EW, padx=10, pady=10)
 l_text.pack()
